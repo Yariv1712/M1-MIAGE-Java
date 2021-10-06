@@ -1,0 +1,198 @@
+Ex1
+
+1)
+
+2) L'IDE nous écrit directement la fonction system.out.println()
+
+3) L'IDE nous propose soit de générer une méthode toStr soit de réecrire la méthode toString héritée de la classe objet.
+
+4) Ca nous permet d'ecrire la méthode main avec sa signature.
+
+5) On nous propose d'écrire le constructeur. On nous propose d'écrire la méthode set.
+
+6) Ca nous propose de renommer la classe. Pareil pour la variable
+
+7) At home.
+
+
+Ex2
+
+1) Parce que nous sommes dans la classe où ces attributs sont définis 
+
+2) Comme les attributs x & y sont privés une classe du même package ne peut pas y accèder. Il faudrait mettre le champ sans modificateur, ou potected ou même "public" (déconseillé).
+
+3) Car sinon, cela compromettrait la sécurité de la classe.
+
+4) Les accesseurs servent justement à accèder aux valeurs des attributs (les modifier, ou juste récupérer leurs valeurs) dans des méthodes définies dans leurs classes. Cela permet de restreindre l'accessibilité.
+
+5) Le problème est que désormais on ne peut plus instancier un objet de type Point avec un constructeur à vide vu qu'on a crée un constructeur parametré. Il y a donc une erreur lorsqu'on écrit Point p = new Point();
+
+6) Ca ne change pas.
+
+7) On peut créer un attribut static qui s'incrémente automatiquement lorsqu'on fait appel au constructeur. 
+
+8) Ca dépendra du paramètre inséré lors de l'appel du constructeur.
+
+9) Il suffit de réecrire la méthode toString() héritée de la classe Object
+
+ex3
+
+1) vrai faux
+Parce que le == vérifie les valeurs de références pour les types objets et non les valeurs.
+
+2) 	public boolean isSameAs(Point p) {
+		return p.x == this.x && p.y==this.y;
+	}
+
+3) Le problème est que la fonction indexOf fait appel à la méthode equals de la classe Point
+Etant donné que P3 n'a pas la même référence que p1, la focntion renvoie -1
+
+	@Override
+	public boolean equals(Object obj) {
+		Point p = (Point) obj;
+		return p.x == this.x && p.y==this.y;
+	}
+
+ex4
+
+1) 	public Polyline(ArrayList<Point> lesP) {
+		this.lesPoints = lesP;
+	}
+
+2) 	public void add(Point p) {
+		for (int i = 0; i < lesPoints.length;i++) {
+			if (this.lesPoints[i].equals(null)) {
+				this.lesPoints[i] = p;
+			}
+		}
+	}
+S'il n'y a plus de place, il y aura une erreur dans le compilateur. Il faudrait créer un tableau qui s'incrèmente de 1 lors de l'appel de la fonction et qui récupère les données du tableau précédent
+
+3) 	public int pointCapactiy() {
+		return this.lesPoints.length;
+	}
+	
+	public int nbPoints() {
+		int cumul = 0;
+		for (int i = 0; i < lesPoints.length;i++) {
+			if (this.lesPoints[i].equals(null) == false) {
+				cumul ++;
+			}
+		}
+		return cumul;
+	}
+
+4)	public boolean contains(Point p) {
+		boolean trouve = false;
+		for (Point p1 : this.lesPoints) {
+			if (p1.isSameAs(p)) trouve = true;
+		}
+		return trouve;
+	}
+
+5) il y aura tjrs false car de nombreuses méthodes Java 8 dans Oracle JDK utilisent Objects.requireNonNull(),
+ ce qui déclenche en interne NullPointerExceptionsi l'objet (argument) donné l'est null.
+
+6) Il faut changer les [i] par des get(i) et les .length par des .size() 
+
+Ex5
+
+1)
+Une des façons d'écrire est la suivante :
+
+ 	public void translate(int dx, int dy) {
+		this.x = dx;
+		this.y = dy;
+	}
+
+2) 
+
+public class Circle {
+
+	private int radius;
+	private Point centre;
+	
+	public Circle(int r, Point c) {
+		this.radius = r;
+		this.centre = new Point(c);
+	}
+	
+}
+
+3)
+	@Override
+	public String toString(){
+		return "Le rayon du cercle est " + this.radius + " et " + this.centre;
+	}
+
+4) 
+	public void translate(int dx, int dy) {
+		this.centre.translate(dx, dy);
+	
+
+5) Le problème est qu'on peut modifier les coordonées du centre de C2. Pour éviter ça il faut mettre l'attribut centre en "final".
+
+6) Elle n'empêche pas de modifier la valeur du centre
+
+pour y remédier :
+
+	public Point getCentre() {
+		return new Point(centre);
+	}
+
+7) 	public double area() {
+		return (Math.PI *  Math.pow(radius, radius));
+	}
+
+	@Override
+	public String toString(){
+		return "Le rayon du cercle est " + this.radius + " et " + this.centre + " et son aire est de " + this.area(); 
+	}
+
+8) 	public boolean contains(Point p)
+	{
+		boolean bool=false;
+		if(Math.sqrt(Math.pow(p.getX()-this.centre.getX(),2) + Math.pow(p.getY()-this.centre.getY(),2))< this.radius)
+		{
+			bool=true;
+		}
+		
+		return bool;
+	}
+
+Ex6
+
+1) Non
+
+2)3)
+
+public class Ring extends Circle{
+
+	
+	private int radius_inner;
+	
+	public Ring(int r, Point c, int ri) {
+		super(r, c);
+		this.radius_inner = ri;
+
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Ring r = (Ring) obj;
+		return r.radius_inner == this.radius_inner && r.getRadius()==this.getRadius() && r.getCentre().equals(this.getCentre());
+	}
+}
+
+4) Le problème est qu'on va croire que c'est un cercle. Il faut de nouveau redéfinir la méthode toString() dans la classe Ring
+
+5) 	public boolean contains(Point p)
+	{
+		boolean bool=false;
+		if(Math.sqrt(Math.pow(p.getX()-this.getCentre().getX(),2) + Math.pow(p.getY()-this.getCentre().getY(),2))< this.getRadius())
+		{
+			bool=true;
+		}
+		
+		return bool;
+	}
