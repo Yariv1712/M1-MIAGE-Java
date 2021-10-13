@@ -1,0 +1,93 @@
+Exercice 1
+
+1)
+
+42
+42
+
+24
+24
+
+24
+24
+
+2)
+Dans la classe Fille :
+
+Il peut accèder à la méthode meth de la classe mère et celle de la fille en mettant respectivement super.meth() et meth()
+
+Dans le main :
+A une seule, celle de la classe Fille, il a accède en mettant objetFille.meth()
+
+3) Si on met static il pointe sur la classe meth() de la mère qd on appelle la fonction printMeth()
+
+42,42
+24,42
+42,42
+Qd c'est polymorphisé:
+En attente de compilation on pointe la mère et si y'a des statics on les prend
+
+4)  
+Pareil pour les champs on pointe sur la mère
+42,42
+24,42
+42,42
+
+Exercice 2
+
+(Qd on redéfinit une méthode chez une fille il faut que le modificateur soit moins restreint au maximum
+Qd on a une exception IOException chez la mère on ne peut pas avoir Exeception chez la fille car c'est plus général.)
+
+1)
+- Il n'y a pas de fonctions miage() dans la classe mère
+- Dans la classe mère la fonction h() renvoie un int alors que chez la fille elle renvoie un char 
+- Dans la classe mère la fonction i() ne renvoie rien alors que chez la fille elle renvoie un int
+- Dans la classe fille le modificateur de la fonction e() est plus restreint que celui de la mère 
+- Dans la classe fille les classes j(),k(),l(),m() lance des exceptions différentes de chez la mère
+
+3)
+Une redéfinition c'est lorsque qu'on réecrit une méthode de la classe mère chez la classe fille avec la même signature
+Alors qu'une surcharge c'est lorsqu'on réecrit une fonction dans une même classe avec des paramètres différents.
+
+Surcharges : Les deux fonctions c() chez la classe mère, Les deux fonctions c() ainsi que Les deux fonctions d() chez la classe fille
+Redéfinitions : La méthode a(),d()
+
+4)
+
+mere.miage();//erreur
+fille.miage();//"Miage"
+mereFille.miage();//
+((Fille)mereFille).miage();//"Miage"
+
+mere.a();// "Mere_a" car la méthode est public
+mereFille.a();// "Fille_a"
+fille.a();// "Fille_a"
+((Mere)mereFille).a();// "Mere_a" 
+mereFille.b(null);//erreur car on ne peut pas mettre null
+
+mereFille.c();//erreur car la fonction c nécessite un paramètre
+mereFille.c(mere);// "Fille_c(Mere)"
+mereFille.c(mereFille);// "Fille_c(Mere)"
+mereFille.c(fille);//"Fille_c(Fille)"
+fille.c(fille);//"Fille_c(Fille)"
+
+mere.d();//"static Mere_d"
+mereFille.d();//"static Mere_d"
+
+mere.printF();//"Mere_f"
+mereFille.printF();//"Fille_f"
+
+mereFille.j();//"Fille_j"
+mereFille.k();//"Fille_k"
+mereFille.l();//"Fille_l"
+mereFille.m();//"Fille_m"
+
+
+Exo 3
+
+
+
+
+
+
+
