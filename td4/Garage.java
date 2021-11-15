@@ -11,6 +11,14 @@ public class Garage {
 		this.theVehicules.add(Objects.requireNonNull(v));
 	}
 	
+	public int sizeG() {
+		return theVehicules.size();
+	}
+	
+	public ArrayList<Vehicule> getTheVehicules(){
+		return this.theVehicules;
+	}
+	
 	public String toString() {
 		StringBuilder res = new StringBuilder();
 		for (Vehicule v : theVehicules) {
@@ -38,7 +46,7 @@ public class Garage {
 		return v;
 	}
 	
-	public void Remove(Car c) {
+	public void remove(Car c) {
 		this.theVehicules.remove(c);
 	}
 	
@@ -48,6 +56,17 @@ public class Garage {
 				if(theVehicules.remove(v))System.out.println("Bien supprimé");
 				}
 		}
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(!( o instanceof Garage)){
+			return false;
+		}
+		Garage g = (Garage) o;
+		boolean sameVehicule = true;
+		if(!(this.getTheVehicules().equals(g.getTheVehicules()))) sameVehicule= false;
+		return sameVehicule;
 	}
 	
 }

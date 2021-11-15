@@ -6,7 +6,11 @@ public class Bike extends Vehicule {
 	
 	public Bike(String b) {
 		super(b);
-		if (super.dis != null) value = dis.getValue();
+	}
+	
+	public Bike(String b, Discount d) {
+		super(b,d);
+		value = dis.getValue();
 	}
 	
 	@Override

@@ -9,6 +9,11 @@ public abstract class Vehicule {
 		this.brand = b;
 	}
 	
+	public Vehicule(String b, Discount d) {
+		this.brand = b;
+		this.dis = d;
+	}
+	
 	public String getBrand() {
 		return brand;
 	}

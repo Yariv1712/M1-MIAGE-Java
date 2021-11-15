@@ -10,7 +10,7 @@ public class GarageTest2 {
 	public void remove() {
 		Garage g = new Garage();
 		Car a = new Car("Audi",10000);
-		g.Remove(a);
+		g.remove(a);
 		assertEquals(0,g.valeur());
 	}
 
