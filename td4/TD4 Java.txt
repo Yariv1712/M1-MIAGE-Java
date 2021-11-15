@@ -1,0 +1,14 @@
+TD4
+
+Exercice 2
+
+1) Le comportement n'est pas naturel, il faut redefinir la méthode equals()
+
+2) Il faut redefinir la methode equals de la classe objet
+
+3) il faut redefinir HashCode()
+
+Exercice 3
+
+3) On va créer une classe abstraite vehicule qui va faire hériter Bike et Car
+On utilisera une liste de véhicules dans le garage
